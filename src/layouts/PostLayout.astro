@@ -1,0 +1,54 @@
+---
+import FormattedDate from "../components/FormattedDate.astro";
+import BaseLayout from "./BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <div class="post">
+    <div>
+      <a href="/blog"><Icon name="arrow-left" />Back</a>
+      <h1>{frontmatter.title}</h1>
+      <FormattedDate date={new Date(frontmatter.pubDate)} />
+    </div>
+    <main><slot /></main>
+  </div>
+</BaseLayout>
+
+<style>
+  .post {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  a {
+    font: var(--font-paragraph);
+    color: var(--color-secondary);
+    text-decoration: none;
+    display: flex;
+    gap: 12px;
+    padding: 24px 0;
+    align-items: center;
+  }
+
+  a:hover {
+    color: var(--color-primary);
+  }
+
+  [data-icon] {
+    width: 24px;
+    height: 24px;
+  }
+
+  h1 {
+    font: var(--font-post-header);
+    color: var(--color-primary);
+  }
+
+  time {
+    font: var(--font-paragraph);
+  }
+</style>

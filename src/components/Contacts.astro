@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { CONTACTS } from "../consts";
+---
+
+<div class="contacts">
+  <h2>Contacts</h2>
+  <div class="socials">
+    {
+      CONTACTS.map((contact) => (
+        <a href={contact.link} target="_blank" aria-label={contact.label}>
+          <Icon name={contact.icon} />
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .contacts {
+    padding-top: 64px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h2 {
+    font: var(--font-subheading);
+    color: var(--color-primary);
+  }
+
+  .socials {
+    display: flex;
+    gap: 24px;
+  }
+
+  a {
+    height: 28px;
+  }
+
+  [data-icon] {
+    width: 28px;
+    height: 28px;
+    color: var(--color-secondary);
+  }
+
+  [data-icon]:hover {
+    color: var(--color-primary);
+  }
+</style>

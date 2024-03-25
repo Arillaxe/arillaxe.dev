@@ -1,0 +1,55 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+
+const allPosts = await Astro.glob("../pages/blog/*.md");
+const recentPosts = allPosts.slice(-5);
+---
+
+<div class="recent-posts">
+  <h2>Recent posts</h2>
+  <div class="posts">
+    {
+      recentPosts.map((post) => (
+        <div class="post">
+          <FormattedDate date={new Date(post.frontmatter.pubDate)} />
+          <a href={post.url}>{post.frontmatter.title}</a>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .recent-posts {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h2 {
+    font: var(--font-subheading);
+    color: var(--color-primary);
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .post {
+    display: flex;
+    gap: 32px;
+  }
+
+  a {
+    font: var(--font-paragraph);
+    text-decoration: underline;
+    color: var(--color-secondary);
+  }
+
+  a:hover {
+    color: var(--color-primary);
+  }
+</style>
