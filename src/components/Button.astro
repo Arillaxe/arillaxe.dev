@@ -1,0 +1,34 @@
+---
+interface Props {
+  disabled?: boolean;
+}
+
+const { disabled = false } = Astro.props;
+---
+
+<button disabled={disabled}>
+  <slot />
+</button>
+
+<style>
+  button {
+    border: 1.5px solid var(--color-secondary);
+    color: var(--color-secondary);
+    background: transparent;
+    padding: 12px 24px;
+    font: var(--font-button);
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  button:disabled,
+  button:disabled:hover {
+    color: var(--color-border);
+    border-color: var(--color-border);
+    cursor: not-allowed;
+  }
+</style>

@@ -2,7 +2,10 @@
 import FormattedDate from "./FormattedDate.astro";
 
 const allPosts = await Astro.glob("../pages/blog/*.md");
-const recentPosts = allPosts.slice(-5);
+const recentPosts = allPosts
+  .sort((a, b) => a.frontmatter.pubDate - b.frontmatter.pubDate)
+  .reverse()
+  .slice(-5);
 ---
 
 <div class="recent-posts">
@@ -11,8 +14,8 @@ const recentPosts = allPosts.slice(-5);
     {
       recentPosts.map((post) => (
         <div class="post">
-          <FormattedDate date={new Date(post.frontmatter.pubDate)} />
           <a href={post.url}>{post.frontmatter.title}</a>
+          <FormattedDate date={new Date(post.frontmatter.pubDate)} />
         </div>
       ))
     }
@@ -41,6 +44,9 @@ const recentPosts = allPosts.slice(-5);
   .post {
     display: flex;
     gap: 32px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 6px;
   }
 
   a {

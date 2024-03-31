@@ -4,6 +4,7 @@
   --color-secondary: #22272a;
   --color-border: #282a30;
   --color-active: #05fa1a;
+  --color-remark: hsl(224, 100%, 60%);
 
   --font-title: bold 32px / 40px "Consolas";
   --font-paragraph: 16px / 24px "Consolas";
@@ -11,6 +12,8 @@
   --font-footer: 12px / 20px "Consolas";
   --font-subheading: 20px / 28px "Consolas";
   --font-post-header: 32px / 40px "Consolas";
+  --font-button: 16px / 10px "Consolas";
+  --font-post-title: 18px / 26px "Consolas";
 }
 
 .dark {
@@ -44,6 +47,21 @@ h1,
 h2,
 h3,
 h4,
+pre,
 p {
   margin: 0;
+}
+
+code {
+  background-color: var(--color-border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+blockquote {
+  background-color: var(--color-border);
+  margin: 0;
+  padding: 16px;
+  border-left: 3px solid var(--color-remark);
 }

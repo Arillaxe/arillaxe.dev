@@ -12,8 +12,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         max-width: 740px;
+        width: 100%;
         padding: 0 32px;
+        box-sizing: border-box;
       }
 
       main {

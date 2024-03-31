@@ -42,6 +42,7 @@ import { Icon } from "astro-icon/components";
   .groups {
     display: flex;
     gap: 64px;
+    flex-wrap: wrap;
   }
 
   .group {
@@ -74,4 +75,10 @@ import { Icon } from "astro-icon/components";
     height: 24px;
     color: var(--color-secondary);
   }
+
+  /* @media only screen and (max-width: 450px) {
+    .groups {
+      flex-direction: column;
+    }
+  } */
 </style>

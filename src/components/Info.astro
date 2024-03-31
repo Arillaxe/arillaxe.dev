@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="info">
+  <div class="location">
+    <Icon name="geomark" />
+    <p>Antalya, Turkey</p>
+  </div>
+  <div class="availability">Available for work</div>
+</div>
+
+<style>
+  .info {
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+    row-gap: 16px;
+  }
+
+  .location {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    gap: 8px;
+  }
+
+  [data-icon="geomark"] {
+    color: var(--color-secondary);
+  }
+
+  .availability::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--color-active);
+  }
+
+  .availability {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* @media only screen and (max-width: 470px) {
+    .info
+  } */
+</style>

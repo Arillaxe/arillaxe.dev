@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Info from "../components/Info.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Contacts from "../components/Contacts.astro";
+---
+
+<BaseLayout>
+  <div class="heading">
+    <h1>Hi, my name is <span class="primary">Bekir</span></h1>
+    <p>
+      I’m a somewhat self-taught programmer. Started out by making mods for
+      Minecraft and small games with JS Canvas and Unity. Working as a Full
+      Stack Web Developer with 5+ years of experience. Currently learning C++
+      and OpenGL.
+    </p>
+  </div>
+
+  <Info />
+
+  <Experience />
+
+  <Education />
+
+  <Contacts />
+</BaseLayout>
+
+<style>
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h1 {
+    font: var(--font-title);
+  }
+
+  .primary {
+    color: var(--color-primary);
+  }
+</style>
