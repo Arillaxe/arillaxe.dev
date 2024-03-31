@@ -1,0 +1,117 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "./Button.astro";
+
+const posts = (await Astro.glob("../experience/*.md")).reverse();
+---
+
+<div class="experience">
+  <div class="experience-heading">
+    <h2>Work experience</h2>
+    <a href="./Bekir_Shabutov_Resume.pdf"><Button>Download CV</Button></a>
+  </div>
+  <div class="roles">
+    {
+      posts.map((post) => (
+        <div class="role">
+          <div>
+            <div>
+              <h3>{post.frontmatter.companyName}</h3>
+              <p>{post.frontmatter.role}</p>
+            </div>
+            <div>
+              <p>{post.frontmatter.dates}</p>
+              <p class="role-location">
+                <Icon name="geomark" />
+                {post.frontmatter.location}
+              </p>
+            </div>
+          </div>
+          <div class="md">
+            <post.Content />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .experience {
+    padding-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .experience-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h2 {
+    font: var(--font-subheading);
+    color: var(--color-primary);
+  }
+
+  .roles {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .role {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 24px;
+  }
+
+  .role:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .role div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .role div div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .role div:nth-child(2) {
+    align-items: flex-end;
+  }
+
+  .role-location {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  h3 {
+    color: var(--color-primary);
+    font: var(--font-paragraph);
+  }
+
+  .md {
+    ul {
+      margin: 0;
+      padding-left: 24px;
+      list-style: disc outside none;
+    }
+  }
+
+  @media only screen and (max-width: 470px) {
+    .role div {
+      flex-direction: column;
+    }
+
+    .role div div {
+      align-items: flex-start;
+    }
+  }
+</style>

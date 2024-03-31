@@ -1,0 +1,38 @@
+---
+import Button from "./Button.astro";
+
+const { length, currentUrl, currentPage, firstUrl, prevUrl, nextUrl, lastUrl } =
+  Astro.props;
+const paginationList = Array(length)
+  .fill(0)
+  .map((_, i) => i + 1);
+
+console.log(currentUrl, firstUrl);
+---
+
+<nav aria-label="Blog pages" class="pagination">
+  <a href={firstUrl}>
+    <Button disabled={firstUrl === currentUrl}>&lt;&lt;</Button>
+  </a>
+  <a href={prevUrl}><Button disabled={!prevUrl}>&lt;</Button></a>
+  {
+    paginationList
+      .slice(Math.max(0, currentPage - 3), currentPage + 2)
+      .map((num) => (
+        <a href={`${firstUrl}${num == 1 ? "" : "/" + num}`}>
+          <Button disabled={currentPage === num}>{num}</Button>
+        </a>
+      ))
+  }
+  <a href={nextUrl}><Button disabled={!nextUrl}>&gt;</Button></a>
+  <a href={lastUrl}>
+    <Button disabled={currentUrl === lastUrl}>&gt;&gt;</Button>
+  </a>
+</nav>
+
+<style>
+  .pagination {
+    display: flex;
+    gap: 12px;
+  }
+</style>

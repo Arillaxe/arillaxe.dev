@@ -1,0 +1,106 @@
+---
+import type { MarkdownInstance, PaginateFunction } from "astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Pagination from "../../components/Pagination.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const allPosts: MarkdownInstance<Record<string, any>>[] =
+    await Astro.glob("./*.md");
+  const formattedPosts = allPosts
+    .sort((a, b) => a.frontmatter.pubDate - b.frontmatter.pubDate)
+    .reverse();
+
+  return paginate(formattedPosts, {
+    pageSize: 5,
+  });
+}
+
+const { page } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname.split("/");
+const firstPath = pathname[1];
+---
+
+<BaseLayout>
+  <div class="posts">
+    <h1>Posts</h1>
+    {
+      page.data.map((post) => (
+        <div class="post">
+          <a href={post.url}>
+            <div class="title">{post.frontmatter.title}</div>
+          </a>
+          <div class="date">
+            <FormattedDate date={new Date(post.frontmatter.pubDate)} />
+          </div>
+        </div>
+      ))
+    }
+    {
+      page.total > page.size && (
+        <div class="pagination-container">
+          <Pagination
+            length={page.lastPage}
+            currentUrl={page.url.current}
+            currentPage={page.currentPage}
+            firstUrl={`/${firstPath}`}
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+            lastUrl={`/${firstPath}/${page.lastPage}`}
+          />
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h1 {
+    font: var(--font-subheading);
+    color: var(--color-primary);
+  }
+
+  .items {
+  }
+
+  a {
+    color: var(--color-secondary);
+  }
+
+  a:hover {
+    color: var(--color-primary);
+  }
+
+  .post {
+    display: flex;
+    justify-content: space-between;
+    font: var(--font-post-title);
+    flex-wrap: wrap;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 48px;
+  }
+
+  :global(header) {
+    display: none;
+    padding-bottom: 10px;
+  }
+
+  :global(footer) {
+    display: none;
+    padding-bottom: 10px;
+  }
+</style>

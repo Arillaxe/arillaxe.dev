@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "Arillaxe.dev";
-export const SITE_DESCRIPTION = "Welcome to my website!";
+export const SITE_DESCRIPTION = "Arillaxe's homepage";
 
 export const CONTACTS = [
   {
@@ -111,5 +111,14 @@ export const SKILLS = [
         icon: "jest",
       },
     ],
+  },
+];
+
+export const EDUCATIONS = [
+  {
+    title: "Crimean Federal University",
+    dates: "Sep 2017 - Jul 2021",
+    role: "Bachelor's degree\nComputer Software Engineering",
+    location: "Simferopol, Russian Federation",
   },
 ];

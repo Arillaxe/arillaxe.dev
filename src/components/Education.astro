@@ -1,0 +1,87 @@
+---
+import { Icon } from "astro-icon/components";
+import { EDUCATIONS } from "../consts";
+---
+
+<div class="education">
+  <h2>Education</h2>
+  <div class="educations">
+    {
+      EDUCATIONS.map((education) => (
+        <div class="item">
+          <div>
+            <h3>{education.title}</h3>
+            <pre>{education.role}</pre>
+          </div>
+          <div>
+            <p>{education.dates}</p>
+            <p>
+              <Icon name="geomark" />
+              {education.location}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .education {
+    padding-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h2 {
+    color: var(--color-primary);
+    font: var(--font-subheading);
+  }
+
+  .educations {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h3 {
+    color: var(--color-primary);
+    font: var(--font-paragraph);
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item:not(:last-child) {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .item div:nth-child(2) {
+    align-items: flex-end;
+  }
+
+  .item div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @media only screen and (max-width: 470px) {
+    .item {
+      flex-direction: column;
+    }
+
+    .item div:nth-child(2) {
+      align-items: flex-start;
+    }
+  }
+</style>

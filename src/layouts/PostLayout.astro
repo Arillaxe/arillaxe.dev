@@ -21,7 +21,11 @@ const { frontmatter } = Astro.props;
   .post {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
+  }
+
+  .post :global(time) {
+    font: var(--font-footer);
   }
 
   a {
@@ -48,7 +52,9 @@ const { frontmatter } = Astro.props;
     color: var(--color-primary);
   }
 
-  time {
-    font: var(--font-paragraph);
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 </style>
