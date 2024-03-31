@@ -1,0 +1,38 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-on-main-update:
+    name: Run on Main Branch Update
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21' # Adjust to your preferred Node.js version
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          source: "./dist/*"
+          target: ${{ secrets.DEPLOY_TARGET_PATH }}
