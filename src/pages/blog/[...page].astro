@@ -3,6 +3,7 @@ import type { MarkdownInstance, PaginateFunction } from "astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Pagination from "../../components/Pagination.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_TITLE } from "../../consts";
 
 export async function getStaticPaths({
   paginate,
@@ -24,6 +25,8 @@ const { page } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname.split("/");
 const firstPath = pathname[1];
 ---
+
+<title>{SITE_TITLE} | Blog</title>
 
 <BaseLayout>
   <div class="posts">

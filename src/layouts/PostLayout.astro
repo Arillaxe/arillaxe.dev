@@ -3,8 +3,13 @@ import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 
-const { frontmatter } = Astro.props;
+const { frontmatter, rawContent } = Astro.props;
+const descriptionPreview = rawContent().slice(0, 150);
 ---
+
+<title>{frontmatter.title}</title>
+<meta name="title" content={frontmatter.title} />
+<meta name="description" content={descriptionPreview} />
 
 <BaseLayout>
   <div class="post">
