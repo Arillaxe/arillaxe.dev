@@ -118,7 +118,7 @@ export const EDUCATIONS = [
   {
     title: "Crimean Federal University",
     dates: "Sep 2017 - Jul 2021",
-    role: "Bachelor's degree\nComputer Software Engineering",
+    role: "Bachelor's degree\nSoftware Engineering",
     location: "Simferopol, Russian Federation",
   },
 ];
